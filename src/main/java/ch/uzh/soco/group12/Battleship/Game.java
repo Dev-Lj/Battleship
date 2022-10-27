@@ -44,7 +44,7 @@ public class Game {
         Player computerPlayer = new ComputerPlayer(computerGrid, getDefaultBoats());
         // select current player randomly
         Random random = new Random();
-        if (random.nextInt(2) == 0) {
+        if (random.nextBoolean()) {
             // computer makes first move
             currentPlayer = computerPlayer;
             otherPlayer = humanPlayer;
