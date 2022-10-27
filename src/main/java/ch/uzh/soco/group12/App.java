@@ -6,6 +6,8 @@ public class App
 {
     public static final Boolean DEBUG_MODE = true;
 
+    // TODO Test rigorously
+    // TODO Add javaDoc above all methods
     public static void main( String[] args )
     {
         Game game = new Game();

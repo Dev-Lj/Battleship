@@ -8,6 +8,7 @@ public class Grid implements TargetGrid{
 
     private Cell gridList[][];
 
+    // TODO set size of Grid from Constructor params
     public Grid() {
         this.gridList = new Cell[10][10];
         for (int i = 0; i < GRID_SIZE; i++) {

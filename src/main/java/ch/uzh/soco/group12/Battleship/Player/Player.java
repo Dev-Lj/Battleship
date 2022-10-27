@@ -39,6 +39,7 @@ public abstract class Player {
 
     public abstract void playRound(TargetGrid targetGrid);
 
+    // TODO find out if this is an antipattern
     public abstract TargetGrid getTargetGrid();
 
     public abstract String getVictoryMessage();
