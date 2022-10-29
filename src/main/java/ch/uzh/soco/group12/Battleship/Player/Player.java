@@ -14,10 +14,10 @@ public abstract class Player {
     /**
      * 
      * @param oceanGrid
-     * @param targetGrid
      * @param boats
      * 
-     * @pre oceangrid != null && targetGrid != null
+     * @pre oceangrid != null
+     * @post boats are set to oceanGrid
      */
     public Player(Grid oceanGrid, Iterable<Boat> boats) {
         assert oceanGrid != null ;

@@ -9,10 +9,10 @@ public class HumanPlayer extends Player{
     /**
      * 
      * @param oceanGrid
-     * @param targetGrid
      * @param boats
      * 
-     * @pre oceangrid != null && targetGrid != null
+     * @pre oceangrid != null
+     * @post boats are set to oceanGrid
      */
     public HumanPlayer(Grid oceanGrid, Iterable<Boat> boats) {
         super(oceanGrid, boats);
