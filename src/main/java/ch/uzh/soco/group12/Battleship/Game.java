@@ -3,6 +3,7 @@ package ch.uzh.soco.group12.Battleship;
 import java.util.Arrays;
 import java.util.Random;
 
+import ch.uzh.soco.group12.Battleship.Grid.Grid;
 import ch.uzh.soco.group12.Battleship.Player.ComputerPlayer;
 import ch.uzh.soco.group12.Battleship.Player.HumanPlayer;
 import ch.uzh.soco.group12.Battleship.Player.Player;

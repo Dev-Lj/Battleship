@@ -1,23 +1,35 @@
-package ch.uzh.soco.group12.Battleship;
+package ch.uzh.soco.group12.Battleship.Grid;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Grid implements TargetGrid{
-    public static final int GRID_SIZE = 10;
+import ch.uzh.soco.group12.Battleship.Boat;
+import ch.uzh.soco.group12.Battleship.Cell;
 
-    private Cell gridList[][];
+public class Grid implements TargetGrid,OceanGrid{
+    public static final int DEFAULT_GRID_SIZE = 10;
 
-    // TODO set size of Grid from Constructor params
+    private final Cell gridList[][];
+
     public Grid() {
-        this.gridList = new Cell[10][10];
-        for (int i = 0; i < GRID_SIZE; i++) {
-            for (int j = 0; j < GRID_SIZE; j++) {
+        this.gridList = new Cell[DEFAULT_GRID_SIZE][DEFAULT_GRID_SIZE];
+        initializeGrid(DEFAULT_GRID_SIZE);
+    }
+
+    public Grid(int size) {
+        this.gridList = new Cell[size][size];
+        initializeGrid(size);
+    }
+
+    private void initializeGrid(int size) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 gridList[i][j] = new Cell(j, i);
             }
         }
     }
 
+    @Override
     public int getSize() {
         return gridList.length;
     }
@@ -79,6 +91,7 @@ public class Grid implements TargetGrid{
         }
     }
 
+    @Override
     public void placeBoat(String startCoordinate, String endCoordinate, Boat boat) {
         List<Cell> cells = getCellsByCoordinates(startCoordinate, endCoordinate);
         placeBoat(cells, boat);
@@ -93,6 +106,7 @@ public class Grid implements TargetGrid{
      * 
      * @pre xn < grid.length && xn >= 0 && yn < grid.length && yn >= 0
      */
+    @Override
     public void placeBoat(int x1, int y1, int x2, int y2, Boat boat) {
         assert x1 < gridList.length && x1 >= 0 && x2 < gridList.length && x2 >= 0;
         assert y1 < gridList.length && y1 >= 0 && y2 < gridList.length && y2 >= 0;
@@ -141,6 +155,7 @@ public class Grid implements TargetGrid{
         return gridString;
     }
 
+    @Override
     public String toOceanGridString() {
         return gridToString(" Ocean  Grid ", false);
     }
@@ -164,7 +179,5 @@ public class Grid implements TargetGrid{
         assert x >= 0 && x < gridList.length && y >= 0 && y < gridList.length;
         Cell cell = gridList[y][x];
         cell.placeBomb();
-    }
-
-    
+    }   
 }

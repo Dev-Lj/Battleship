@@ -2,8 +2,8 @@ package ch.uzh.soco.group12.Battleship.Player;
 
 import ch.uzh.soco.group12.App;
 import ch.uzh.soco.group12.Battleship.Boat;
-import ch.uzh.soco.group12.Battleship.Grid;
-import ch.uzh.soco.group12.Battleship.TargetGrid;
+import ch.uzh.soco.group12.Battleship.Grid.Grid;
+import ch.uzh.soco.group12.Battleship.Grid.TargetGrid;
 
 public class HumanPlayer extends Player{
     /**
@@ -24,16 +24,16 @@ public class HumanPlayer extends Player{
     }
 
     private void placeBoatsDebug() {
-        oceanGrid.placeBoat("B1", "B6", boats.get(0)); // Carrier
-        oceanGrid.placeBoat("F1", "I1", boats.get(1)); // Battleship
-        oceanGrid.placeBoat("A9", "D9", boats.get(2)); // Battleship
-        oceanGrid.placeBoat("A7", "C7", boats.get(3)); // Submarine
-        oceanGrid.placeBoat("A8", "C8", boats.get(4)); // Submarine
-        oceanGrid.placeBoat("E9", "G9", boats.get(5)); // Submarine
-        oceanGrid.placeBoat("J0", "J1", boats.get(6)); // Patrolboat
-        oceanGrid.placeBoat("J2", "J3", boats.get(7)); // Patrolboat
-        oceanGrid.placeBoat("G5", "G6", boats.get(8)); // Patrolboat
-        oceanGrid.placeBoat("H9", "I9", boats.get(9)); // Patrolboat
+        super.getOceanGrid().placeBoat("B1", "B6", boats.get(0)); // Carrier
+        super.getOceanGrid().placeBoat("F1", "I1", boats.get(1)); // Battleship
+        super.getOceanGrid().placeBoat("A9", "D9", boats.get(2)); // Battleship
+        super.getOceanGrid().placeBoat("A7", "C7", boats.get(3)); // Submarine
+        super.getOceanGrid().placeBoat("A8", "C8", boats.get(4)); // Submarine
+        super.getOceanGrid().placeBoat("E9", "G9", boats.get(5)); // Submarine
+        super.getOceanGrid().placeBoat("J0", "J1", boats.get(6)); // Patrolboat
+        super.getOceanGrid().placeBoat("J2", "J3", boats.get(7)); // Patrolboat
+        super.getOceanGrid().placeBoat("G5", "G6", boats.get(8)); // Patrolboat
+        super.getOceanGrid().placeBoat("H9", "I9", boats.get(9)); // Patrolboat
     }
 
     private void placeBoats() {
@@ -42,7 +42,7 @@ public class HumanPlayer extends Player{
             hasError = true;
             while (hasError) {
                 try {
-                    System.out.println(oceanGrid);
+                    System.out.println(super.getOceanGrid().toOceanGridString());
                     placeBoat(boat);
                     hasError = false;
                 } catch (Exception e) {
@@ -60,13 +60,13 @@ public class HumanPlayer extends Player{
         if (coordinates.length != 2) {
             throw new IllegalArgumentException("Please enter two coordinates separated by a comma (e.g. A1,A2).");
         }
-        super.oceanGrid.placeBoat(coordinates[0], coordinates[1], boat);
+        super.getOceanGrid().placeBoat(coordinates[0], coordinates[1], boat);
     }
 
     @Override
     public void playRound(TargetGrid targetGrid) {
         System.out.println(targetGrid.toTargetGridString());
-        System.out.println(oceanGrid.toOceanGridString());
+        System.out.println(super.getOceanGrid().toOceanGridString());
         Boolean hasError = true;
         while (hasError) {
             try {
@@ -84,11 +84,5 @@ public class HumanPlayer extends Player{
     @Override
     public String getVictoryMessage() {
         return "Congrats you won :)";
-    }
-
-    @Override
-    public TargetGrid getTargetGrid() {
-        return super.oceanGrid;
-    }
-    
+    } 
 }
