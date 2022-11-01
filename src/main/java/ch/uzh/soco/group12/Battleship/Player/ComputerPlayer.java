@@ -4,17 +4,16 @@ import java.util.Random;
 
 import ch.uzh.soco.group12.App;
 import ch.uzh.soco.group12.Battleship.Boat;
-import ch.uzh.soco.group12.Battleship.Grid.Grid;
 import ch.uzh.soco.group12.Battleship.Grid.OceanGrid;
 import ch.uzh.soco.group12.Battleship.Grid.TargetGrid;
 
 public class ComputerPlayer extends Player{
 
-    public ComputerPlayer(Grid oceanGrid, Iterable<Boat> boats) {
+    public ComputerPlayer(OceanGrid oceanGrid, Iterable<Boat> boats) {
         super(oceanGrid, boats);
         placeBoats();
         if (App.DEBUG_MODE) {
-            System.out.println(oceanGrid.toOceanGridString());
+            System.out.println(oceanGrid);
         }
     }
     

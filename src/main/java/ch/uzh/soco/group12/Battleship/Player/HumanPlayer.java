@@ -2,7 +2,7 @@ package ch.uzh.soco.group12.Battleship.Player;
 
 import ch.uzh.soco.group12.App;
 import ch.uzh.soco.group12.Battleship.Boat;
-import ch.uzh.soco.group12.Battleship.Grid.Grid;
+import ch.uzh.soco.group12.Battleship.Grid.OceanGrid;
 import ch.uzh.soco.group12.Battleship.Grid.TargetGrid;
 
 public class HumanPlayer extends Player{
@@ -14,7 +14,7 @@ public class HumanPlayer extends Player{
      * @pre oceangrid != null
      * @post boats are set to oceanGrid
      */
-    public HumanPlayer(Grid oceanGrid, Iterable<Boat> boats) {
+    public HumanPlayer(OceanGrid oceanGrid, Iterable<Boat> boats) {
         super(oceanGrid, boats);
         if (App.DEBUG_MODE) {
             placeBoatsDebug();
@@ -42,7 +42,7 @@ public class HumanPlayer extends Player{
             hasError = true;
             while (hasError) {
                 try {
-                    System.out.println(super.getOceanGrid().toOceanGridString());
+                    System.out.println(super.getOceanGrid());
                     placeBoat(boat);
                     hasError = false;
                 } catch (Exception e) {
@@ -65,8 +65,8 @@ public class HumanPlayer extends Player{
 
     @Override
     public void playRound(TargetGrid targetGrid) {
-        System.out.println(targetGrid.toTargetGridString());
-        System.out.println(super.getOceanGrid().toOceanGridString());
+        System.out.println(targetGrid);
+        System.out.println(super.getOceanGrid());
         Boolean hasError = true;
         while (hasError) {
             try {

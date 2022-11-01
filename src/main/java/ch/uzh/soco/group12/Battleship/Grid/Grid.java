@@ -3,22 +3,31 @@ package ch.uzh.soco.group12.Battleship.Grid;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.uzh.soco.group12.Battleship.Boat;
 import ch.uzh.soco.group12.Battleship.Cell;
 
-public class Grid implements TargetGrid,OceanGrid{
+public abstract class Grid {
     public static final int DEFAULT_GRID_SIZE = 10;
 
     private final Cell gridList[][];
 
-    public Grid() {
+    protected Grid() {
         this.gridList = new Cell[DEFAULT_GRID_SIZE][DEFAULT_GRID_SIZE];
         initializeGrid(DEFAULT_GRID_SIZE);
     }
 
-    public Grid(int size) {
+    protected Grid(int size) {
         this.gridList = new Cell[size][size];
         initializeGrid(size);
+    }
+
+    /**
+     * 
+     * @param gridList
+     * @pre gridList != null && gridList.length > 0;
+     */
+    protected Grid(Cell gridList[][]) {
+        assert gridList != null && gridList.length > 0;
+        this.gridList = gridList;
     }
 
     private void initializeGrid(int size) {
@@ -29,23 +38,34 @@ public class Grid implements TargetGrid,OceanGrid{
         }
     }
 
-    @Override
     public int getSize() {
         return gridList.length;
     }
 
-    private Cell getCellByCoordinate(String coordinate) {
+    protected Cell[][] getGridList() {
+        return this.gridList;
+    }
+
+    /**
+     * @pre x >= 0 && x < gridList.length && y >= 0 && y < gridList.length
+     */
+    protected Cell getCell(int x, int y) {
+        assert x >= 0 && x < getSize() && y >= 0 && y < getSize();
+        return gridList[y][x];
+    }
+
+    protected Cell getCell(String coordinate) {
         try {
             char c = coordinate.toLowerCase().charAt(0);
             int x = (int)c - (int)'a';
             int y = Integer.parseInt(coordinate.substring(1));
-            return gridList[y][x];
+            return getCell(x, y);
         } catch (Exception e) {
             throw new IllegalArgumentException("Coordinate "+ coordinate + "could not be resolved.");
         }
     }
 
-    private List<Cell> getCellsBetween(Cell fromCell, Cell toCell) {
+    protected List<Cell> getCellsBetween(Cell fromCell, Cell toCell) {
         List<Cell> cells = new ArrayList<Cell>();
 
         if (fromCell.getX() == toCell.getX()) {
@@ -65,56 +85,14 @@ public class Grid implements TargetGrid,OceanGrid{
         return cells;
     }
 
-    private List<Cell> getCellsByCoordinates(String fromString, String toString) {
+    protected List<Cell> getCellsBetween(String fromString, String toString) {
         if (fromString.toLowerCase() == toString.toLowerCase()) {
             throw new IllegalArgumentException("Start coordinate must not match end coordinate.");
         }
 
-        Cell fromCell = getCellByCoordinate(fromString);
-        Cell toCell = getCellByCoordinate(toString);
+        Cell fromCell = getCell(fromString);
+        Cell toCell = getCell(toString);
         return getCellsBetween(fromCell, toCell);
-    }
-
-    private void placeBoat(List<Cell> cells, Boat boat) {
-        if (cells.size() != boat.getLength()) {
-            throw new IllegalArgumentException("Length of coordinates (" + cells.size() + ") do not match length of boat ("+ boat.getLength() +").");
-        }
-        // check if a boat is already placed in row/column
-        for (Cell cell : cells) {
-            if (cell.hasBoat()) {
-                throw new IllegalArgumentException("Cell already contains boat. Select different coordinates.");
-            }
-        }
-
-        for (Cell cell : cells) {
-            cell.setBoat(boat);
-        }
-    }
-
-    @Override
-    public void placeBoat(String startCoordinate, String endCoordinate, Boat boat) {
-        List<Cell> cells = getCellsByCoordinates(startCoordinate, endCoordinate);
-        placeBoat(cells, boat);
-    }
-
-    /**
-     * 
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
-     * 
-     * @pre xn < grid.length && xn >= 0 && yn < grid.length && yn >= 0
-     */
-    @Override
-    public void placeBoat(int x1, int y1, int x2, int y2, Boat boat) {
-        assert x1 < gridList.length && x1 >= 0 && x2 < gridList.length && x2 >= 0;
-        assert y1 < gridList.length && y1 >= 0 && y2 < gridList.length && y2 >= 0;
-
-        Cell fromCell = gridList[y1][x1];
-        Cell toCell = gridList[y2][x2];
-        List<Cell> cells = getCellsBetween(fromCell, toCell);
-        placeBoat(cells, boat);
     }
 
     private String generateColNamesString() {
@@ -138,7 +116,7 @@ public class Grid implements TargetGrid,OceanGrid{
         return heading;
     }
 
-    private String gridToString(String headingText, boolean censor) {
+    protected String gridToString(String headingText, boolean censor) {
         String gridString = generateGridHeader(headingText);
         gridString += " " + generateColNamesString() + "\n";
         final String upperLowerBorder = " " + "+-".repeat(gridList.length) + "+";
@@ -155,29 +133,5 @@ public class Grid implements TargetGrid,OceanGrid{
         return gridString;
     }
 
-    @Override
-    public String toOceanGridString() {
-        return gridToString(" Ocean  Grid ", false);
-    }
-
-    @Override
-    public String toTargetGridString() {
-        return gridToString(" Target Grid ", true);
-    }
-
-    @Override
-    public void placeBomb(String coordinate) {
-        Cell cell = getCellByCoordinate(coordinate);
-        cell.placeBomb();
-    }
-
-    /**
-     * @pre x >= 0 && x < gridList.length && y >= 0 && y < gridList.length
-     */
-    @Override
-    public void placeBomb(int x, int y) {
-        assert x >= 0 && x < gridList.length && y >= 0 && y < gridList.length;
-        Cell cell = gridList[y][x];
-        cell.placeBomb();
-    }   
+    public abstract String toString(); 
 }

@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.uzh.soco.group12.Battleship.Boat;
-import ch.uzh.soco.group12.Battleship.Grid.Grid;
 import ch.uzh.soco.group12.Battleship.Grid.OceanGrid;
 import ch.uzh.soco.group12.Battleship.Grid.TargetGrid;
 
 public abstract class Player {
     protected final List<Boat> boats;
-    private final Grid grid;
+    private final OceanGrid oceanGrid;
 
     /**
      * 
@@ -20,9 +19,9 @@ public abstract class Player {
      * @pre grid != null
      * @post boats are set to oceanGrid
      */
-    public Player(Grid grid, Iterable<Boat> boats) {
-        assert grid != null ;
-        this.grid = grid;
+    public Player(OceanGrid oceanGrid, Iterable<Boat> boats) {
+        assert oceanGrid != null ;
+        this.oceanGrid = oceanGrid;
         this.boats = new ArrayList<Boat>();
         for (Boat boat : boats) {
             this.boats.add(boat);
@@ -41,11 +40,11 @@ public abstract class Player {
     public abstract void playRound(TargetGrid targetGrid);
 
     public TargetGrid getTargetGrid() {
-        return grid;
+        return oceanGrid.toTargetGrid();
     }
 
     protected OceanGrid getOceanGrid() {
-        return grid;
+        return oceanGrid;
     }
 
     public abstract String getVictoryMessage();
