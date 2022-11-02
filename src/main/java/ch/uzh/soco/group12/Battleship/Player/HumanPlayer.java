@@ -56,7 +56,7 @@ public class HumanPlayer extends Player{
         }
     }
 
-    private void placeBoat(Boat boat) {
+    private void placeBoat(Boat boat) throws IllegalArgumentException{
         System.out.print(String.format("Enter coordinates for %s (%d blocks): ", boat, boat.getLength()));
         String input = System.console().readLine();
         String[] coordinates = input.split(",");

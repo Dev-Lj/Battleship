@@ -60,7 +60,7 @@ public abstract class Grid {
         return gridList[y][x];
     }
 
-    protected Cell getCell(String coordinate) {
+    protected Cell getCell(String coordinate) throws IllegalArgumentException{
         try {
             char c = coordinate.toLowerCase().charAt(0);
             int x = (int)c - (int)'a';
@@ -71,7 +71,7 @@ public abstract class Grid {
         }
     }
 
-    protected List<Cell> getCellsBetween(Cell fromCell, Cell toCell) {
+    protected List<Cell> getCellsBetween(Cell fromCell, Cell toCell) throws IllegalArgumentException {
         List<Cell> cells = new ArrayList<Cell>();
 
         if (fromCell.getX() == toCell.getX()) {
@@ -91,7 +91,7 @@ public abstract class Grid {
         return cells;
     }
 
-    protected List<Cell> getCellsBetween(String fromString, String toString) {
+    protected List<Cell> getCellsBetween(String fromString, String toString) throws IllegalArgumentException{
         if (fromString.toLowerCase() == toString.toLowerCase()) {
             throw new IllegalArgumentException("Start coordinate must not match end coordinate.");
         }
