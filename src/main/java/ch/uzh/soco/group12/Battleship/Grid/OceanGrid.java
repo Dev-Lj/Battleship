@@ -65,7 +65,7 @@ public class OceanGrid extends Grid{
 
     @Override
     public String toString() {
-        return gridToString(" Ocean  Grid ", false);
+        return gridToString(" Ocean Grid ", false);
     }
     
 }

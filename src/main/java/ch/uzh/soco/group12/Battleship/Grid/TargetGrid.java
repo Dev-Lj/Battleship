@@ -24,7 +24,7 @@ public class TargetGrid extends Grid{
 
     @Override
     public String toString() {
-        return gridToString(" Target Grid ", true);
+        return gridToString(" Target  Grid ", true);
     }
 
 }

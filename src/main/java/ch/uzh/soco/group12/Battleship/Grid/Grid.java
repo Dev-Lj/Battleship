@@ -116,20 +116,20 @@ public abstract class Grid {
      * @return heading String with decoration
      */
     private String generateGridHeader(String headingText) {
-        assert headingText.length() % 2 == 1;
-        String equalDecoration = "=".repeat((2 * gridList.length + 3 - headingText.length())/2);
+        assert headingText.length() % 2 == 0;
+        String equalDecoration = "=".repeat((2 * gridList.length + 4 - headingText.length())/2);
         String heading = equalDecoration + headingText + equalDecoration + "\n";
         return heading;
     }
 
     protected String gridToString(String headingText, boolean censor) {
         String gridString = generateGridHeader(headingText);
-        gridString += " " + generateColNamesString() + "\n";
-        final String upperLowerBorder = " " + "+-".repeat(gridList.length) + "+";
+        gridString += "  " + generateColNamesString() + "\n";
+        final String upperLowerBorder = "  " + "+-".repeat(gridList.length) + "+";
         gridString += upperLowerBorder + "\n";
 
         for (int i = 0; i < gridList.length; i++) {
-            String rowString = Integer.toString(i);
+            String rowString = Integer.toString(i) + (Integer.toString(i).length()>1?"":" ");
             for (Cell cell : gridList[i]) {
                 rowString += "|"+ (censor ? cell.toCensoredChar() : cell.toChar());
             }
