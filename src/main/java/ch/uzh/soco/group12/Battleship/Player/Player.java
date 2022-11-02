@@ -17,7 +17,7 @@ public abstract class Player {
      * @param boats
      * 
      * @pre grid != null
-     * @post boats are set to oceanGrid
+     * @post boats are set to oceanGrid using placeBoats()
      */
     public Player(OceanGrid oceanGrid, Iterable<Boat> boats) {
         assert oceanGrid != null ;
@@ -26,7 +26,10 @@ public abstract class Player {
         for (Boat boat : boats) {
             this.boats.add(boat);
         }
+        placeBoats();
     }
+
+    protected abstract void placeBoats();
 
     public Boolean hasLost() {
         for (Boat boat : boats) {

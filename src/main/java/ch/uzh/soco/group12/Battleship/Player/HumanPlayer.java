@@ -16,10 +16,14 @@ public class HumanPlayer extends Player{
      */
     public HumanPlayer(OceanGrid oceanGrid, Iterable<Boat> boats) {
         super(oceanGrid, boats);
+    }
+
+    @Override
+    protected void placeBoats() {
         if (App.DEBUG_MODE) {
             placeBoatsDebug();
         } else {
-            placeBoats();
+            placeBoatsInput();
         }
     }
 
@@ -36,7 +40,7 @@ public class HumanPlayer extends Player{
         super.getOceanGrid().placeBoat("H9", "I9", boats.get(9)); // Patrolboat
     }
 
-    private void placeBoats() {
+    private void placeBoatsInput() {
         Boolean hasError;
         for (Boat boat : super.boats) {
             hasError = true;

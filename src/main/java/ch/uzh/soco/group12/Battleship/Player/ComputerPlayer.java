@@ -11,7 +11,6 @@ public class ComputerPlayer extends Player{
 
     public ComputerPlayer(OceanGrid oceanGrid, Iterable<Boat> boats) {
         super(oceanGrid, boats);
-        placeBoats();
         if (App.DEBUG_MODE) {
             System.out.println(oceanGrid);
         }
@@ -20,7 +19,8 @@ public class ComputerPlayer extends Player{
     /**
      * Place boats using brute force
      */
-    private void placeBoats() {
+    @Override
+    protected void placeBoats() {
         Random random = new Random();
         Boolean hasError;
         int counter;
