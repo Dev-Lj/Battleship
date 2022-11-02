@@ -14,7 +14,7 @@ public class TargetGrid extends Grid{
     }
 
     /**
-     * @pre x >= 0 && x < gridList.length && y >= 0 && y < gridList.length
+     * @pre x >= 0 && x < GridSize && y >= 0 && y < GridSize
      */
     public void placeBomb(int x, int y) {
         assert x >= 0 && x < getSize() && y >= 0 && y < getSize();

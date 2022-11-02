@@ -31,6 +31,10 @@ public abstract class Player {
 
     protected abstract void placeBoats();
 
+    /**
+     * Checks if any boat is still alive
+     * @return true if no boat is alive
+     */
     public Boolean hasLost() {
         for (Boat boat : boats) {
             if (boat.isAlive()) {

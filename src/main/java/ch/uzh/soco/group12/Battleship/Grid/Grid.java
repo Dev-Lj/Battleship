@@ -15,7 +15,13 @@ public abstract class Grid {
         initializeGrid(DEFAULT_GRID_SIZE);
     }
 
+    /**
+     * 
+     * @param size
+     * @pre size > 0
+     */
     protected Grid(int size) {
+        assert size > 0;
         this.gridList = new Cell[size][size];
         initializeGrid(size);
     }
@@ -61,7 +67,7 @@ public abstract class Grid {
             int y = Integer.parseInt(coordinate.substring(1));
             return getCell(x, y);
         } catch (Exception e) {
-            throw new IllegalArgumentException("Coordinate "+ coordinate + "could not be resolved.");
+            throw new IllegalArgumentException("Coordinate "+ coordinate + " could not be resolved.");
         }
     }
 

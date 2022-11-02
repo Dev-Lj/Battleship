@@ -7,6 +7,10 @@ import ch.uzh.soco.group12.Battleship.Cell;
 
 public class OceanGrid extends Grid{
 
+    /**
+     * This constructor is unnecessary and purely to improve readability of the code
+     * --> instantiation of OceanGrid is not restricted, in contrast to other Grids
+     */
     public OceanGrid() {
         super();
     }
@@ -39,7 +43,7 @@ public class OceanGrid extends Grid{
      * @param x2
      * @param y2
      * 
-     * @pre xn < grid.length && xn >= 0 && yn < grid.length && yn >= 0
+     * @pre xn < GridSize && xn >= 0 && yn < GridSize && yn >= 0
      */
     public void placeBoat(int x1, int y1, int x2, int y2, Boat boat) {
         assert x1 < getSize() && x1 >= 0 && x2 < getSize() && x2 >= 0;
@@ -51,6 +55,10 @@ public class OceanGrid extends Grid{
         placeBoat(cells, boat);
     }
 
+    /**
+     * Get TargetGrid representing state of OceanGrid
+     * @return TargetGrid
+     */
     public TargetGrid toTargetGrid() {
         return new TargetGrid(getGridList());
     }

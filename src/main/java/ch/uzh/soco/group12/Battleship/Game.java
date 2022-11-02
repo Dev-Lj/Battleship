@@ -67,9 +67,9 @@ public class Game {
      * Rules for Game have to be defined before Game is started.
      */
     public void startGame() {
-        // main game loop
         initializeGame();
 
+        // main game loop
         while (!currentPlayer.hasLost()) {
             currentPlayer.playRound(otherPlayer.getTargetGrid());
             switchPlayers();

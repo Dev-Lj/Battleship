@@ -6,14 +6,7 @@ import ch.uzh.soco.group12.Battleship.Grid.OceanGrid;
 import ch.uzh.soco.group12.Battleship.Grid.TargetGrid;
 
 public class HumanPlayer extends Player{
-    /**
-     * 
-     * @param oceanGrid
-     * @param boats
-     * 
-     * @pre oceangrid != null
-     * @post boats are set to oceanGrid
-     */
+
     public HumanPlayer(OceanGrid oceanGrid, Iterable<Boat> boats) {
         super(oceanGrid, boats);
     }
@@ -27,6 +20,9 @@ public class HumanPlayer extends Player{
         }
     }
 
+    /**
+     * Place boats on predefined positions to save time while debuging
+     */
     private void placeBoatsDebug() {
         super.getOceanGrid().placeBoat("B1", "B6", boats.get(0)); // Carrier
         super.getOceanGrid().placeBoat("F1", "I1", boats.get(1)); // Battleship
@@ -40,6 +36,9 @@ public class HumanPlayer extends Player{
         super.getOceanGrid().placeBoat("H9", "I9", boats.get(9)); // Patrolboat
     }
 
+    /**
+     * Place boats according to user input
+     */
     private void placeBoatsInput() {
         Boolean hasError;
         for (Boat boat : super.boats) {
