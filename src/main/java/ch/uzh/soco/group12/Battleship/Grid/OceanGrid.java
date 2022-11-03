@@ -15,7 +15,7 @@ public class OceanGrid extends Grid{
         super();
     }
 
-    private void placeBoat(List<Cell> cells, Boat boat) {
+    private void placeBoat(List<Cell> cells, Boat boat) throws IllegalArgumentException{
         if (cells.size() != boat.getLength()) {
             throw new IllegalArgumentException("Length of coordinates (" + cells.size() + ") do not match length of boat ("+ boat.getLength() +").");
         }

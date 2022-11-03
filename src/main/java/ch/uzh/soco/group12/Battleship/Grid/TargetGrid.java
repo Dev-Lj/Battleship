@@ -8,7 +8,7 @@ public class TargetGrid extends Grid{
         super(gridList);
     }
 
-    public void placeBomb(String coordinate) {
+    public void placeBomb(String coordinate) throws IllegalArgumentException{
         Cell cell = getCell(coordinate);
         cell.placeBomb();
     }
@@ -16,7 +16,7 @@ public class TargetGrid extends Grid{
     /**
      * @pre x >= 0 && x < GridSize && y >= 0 && y < GridSize
      */
-    public void placeBomb(int x, int y) {
+    public void placeBomb(int x, int y) throws IllegalArgumentException{
         assert x >= 0 && x < getSize() && y >= 0 && y < getSize();
         Cell cell = getCell(x, y);
         cell.placeBomb();
