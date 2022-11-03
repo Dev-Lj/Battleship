@@ -69,6 +69,7 @@ public class HumanPlayer extends Player{
     @Override
     public void playRound(TargetGrid targetGrid) {
         System.out.println(targetGrid);
+        System.out.println("-".repeat(targetGrid.toString().indexOf("\n")));
         System.out.println(super.getOceanGrid());
         Boolean hasError = true;
         while (hasError) {
