@@ -135,7 +135,8 @@ public abstract class Grid {
             }
             gridString += String.format("%s|%d\n", rowString, i);
         }
-        gridString += upperLowerBorder;
+        gridString += upperLowerBorder + "\n";
+        gridString += "==".repeat(gridList.length + 2);
         return gridString;
     }
 
