@@ -23,7 +23,7 @@ enum BoatType{
 }
 
 public class Boat {
-    private BoatType type;
+    private final BoatType type;
     private int lives;
 
     /**
