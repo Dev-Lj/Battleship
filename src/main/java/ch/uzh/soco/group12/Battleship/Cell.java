@@ -62,7 +62,11 @@ public class Cell {
         return y;
     }
 
-    public void placeBomb(){
+    public void placeBomb() throws IllegalArgumentException{
+        if (bombed) {
+            throw new IllegalArgumentException("Cell has already been bombed. Choose different Cell.");
+        }
+
         bombed = true;
         if (boat.isPresent()) {
             boat.get().receiveHit();
@@ -72,10 +76,10 @@ public class Cell {
     /**
      * 
      * @param boat
-     * @pre boat != null
+     * @pre boat != null && !this.boat.isPresent
      */
     public void setBoat(Boat boat){
-        assert boat != null;
+        assert boat != null && !this.boat.isPresent();
         this.boat = Optional.of(boat);
     }
 }
