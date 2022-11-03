@@ -24,16 +24,16 @@ public class HumanPlayer extends Player{
      * Place boats on predefined positions to save time while debuging
      */
     private void placeBoatsDebug() {
-        super.getOceanGrid().placeBoat("B1", "B6", boats.get(0)); // Carrier
-        super.getOceanGrid().placeBoat("F1", "I1", boats.get(1)); // Battleship
-        super.getOceanGrid().placeBoat("A9", "D9", boats.get(2)); // Battleship
-        super.getOceanGrid().placeBoat("A7", "C7", boats.get(3)); // Submarine
-        super.getOceanGrid().placeBoat("A8", "C8", boats.get(4)); // Submarine
-        super.getOceanGrid().placeBoat("E9", "G9", boats.get(5)); // Submarine
-        super.getOceanGrid().placeBoat("J0", "J1", boats.get(6)); // Patrolboat
-        super.getOceanGrid().placeBoat("J2", "J3", boats.get(7)); // Patrolboat
-        super.getOceanGrid().placeBoat("G5", "G6", boats.get(8)); // Patrolboat
-        super.getOceanGrid().placeBoat("H9", "I9", boats.get(9)); // Patrolboat
+        super.getOceanGrid().placeBoat("B1", "B6", getBoats().get(0)); // Carrier
+        super.getOceanGrid().placeBoat("F1", "I1", getBoats().get(1)); // Battleship
+        super.getOceanGrid().placeBoat("A9", "D9", getBoats().get(2)); // Battleship
+        super.getOceanGrid().placeBoat("A7", "C7", getBoats().get(3)); // Submarine
+        super.getOceanGrid().placeBoat("A8", "C8", getBoats().get(4)); // Submarine
+        super.getOceanGrid().placeBoat("E9", "G9", getBoats().get(5)); // Submarine
+        super.getOceanGrid().placeBoat("J0", "J1", getBoats().get(6)); // Patrolboat
+        super.getOceanGrid().placeBoat("J2", "J3", getBoats().get(7)); // Patrolboat
+        super.getOceanGrid().placeBoat("G5", "G6", getBoats().get(8)); // Patrolboat
+        super.getOceanGrid().placeBoat("H9", "I9", getBoats().get(9)); // Patrolboat
     }
 
     /**
@@ -41,7 +41,7 @@ public class HumanPlayer extends Player{
      */
     private void placeBoatsInput() {
         Boolean hasError;
-        for (Boat boat : super.boats) {
+        for (Boat boat : super.getBoats()) {
             hasError = true;
             while (hasError) {
                 try {

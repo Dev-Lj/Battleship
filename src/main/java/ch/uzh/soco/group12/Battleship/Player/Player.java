@@ -8,7 +8,7 @@ import ch.uzh.soco.group12.Battleship.Grid.OceanGrid;
 import ch.uzh.soco.group12.Battleship.Grid.TargetGrid;
 
 public abstract class Player {
-    protected final List<Boat> boats;
+    private final List<Boat> boats;
     private final OceanGrid oceanGrid;
 
     /**
@@ -52,6 +52,10 @@ public abstract class Player {
 
     protected OceanGrid getOceanGrid() {
         return oceanGrid;
+    }
+
+    protected List<Boat> getBoats() {
+        return boats;
     }
 
     public abstract String getVictoryMessage();

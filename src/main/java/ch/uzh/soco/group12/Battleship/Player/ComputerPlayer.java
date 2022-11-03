@@ -24,7 +24,7 @@ public class ComputerPlayer extends Player{
         Random random = new Random();
         Boolean hasError;
         int counter;
-        for (Boat boat : boats) {
+        for (Boat boat : getBoats()) {
             hasError = true;
             counter = 0;
             while (hasError) {
