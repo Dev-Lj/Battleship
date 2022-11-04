@@ -72,9 +72,17 @@ public class ComputerPlayer extends Player{
     @Override
     public void playRound(TargetGrid targetGrid) {
         Random random = new Random();
-        int x = random.nextInt(super.getOceanGrid().getSize());
-        int y = random.nextInt(super.getOceanGrid().getSize());
-        targetGrid.placeBomb(x, y);
+        boolean hasError = true;
+        while (hasError) {
+            try {
+                int x = random.nextInt(super.getOceanGrid().getSize());
+                int y = random.nextInt(super.getOceanGrid().getSize());
+                targetGrid.placeBomb(x, y);
+                hasError = false;
+            } catch (Exception e) {
+                hasError = true;
+            }
+        }
     }
 
     @Override
