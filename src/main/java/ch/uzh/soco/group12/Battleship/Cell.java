@@ -23,7 +23,7 @@ public class Cell {
             }
         } else {
             if (bombed) {
-                return 'O';
+                return 'o';
             } else {
                 return ' ';
             }
@@ -39,7 +39,7 @@ public class Cell {
                     return boat.get().getTypeChar();
                 }
             } else {
-                return 'O';
+                return 'o';
             }
         } else {
             return ' ';
