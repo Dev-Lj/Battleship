@@ -87,6 +87,7 @@ public class ComputerPlayer extends Player{
 
     @Override
     public String getVictoryMessage() {
-        return "No shame in loosing against a machine...\nBetter luck next time :)";
+        return "No shame in loosing against a machine...\nThese are my remaining ships:\n" + getOceanGrid();
+        
     }    
 }
