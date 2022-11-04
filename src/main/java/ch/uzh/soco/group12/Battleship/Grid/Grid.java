@@ -76,13 +76,27 @@ public abstract class Grid {
 
         if (fromCell.getX() == toCell.getX()) {
             // column
-            for(int i = fromCell.getY(); i<=toCell.getY(); i++) {
-                cells.add(gridList[i][fromCell.getX()]);
+            if (fromCell.getY()<toCell.getY()) {
+                for(int i = fromCell.getY(); i<=toCell.getY(); i++) {
+                    cells.add(gridList[i][fromCell.getX()]);
+                }
+            } else {
+                // handle fromCell > toCell
+                for(int i = toCell.getY(); i<=fromCell.getY(); i++) {
+                    cells.add(gridList[i][fromCell.getX()]);
+                }
             }
         } else if (fromCell.getY() == toCell.getY()) {
             // row
-            for(int i = fromCell.getX(); i<=toCell.getX(); i++) {
-                cells.add(gridList[fromCell.getY()][i]);
+            if (fromCell.getX()<toCell.getX()) {
+                for(int i = fromCell.getX(); i<=toCell.getX(); i++) {
+                    cells.add(gridList[fromCell.getY()][i]);
+                }   
+            } else {
+                // handle fromCell > toCell
+                for(int i = toCell.getX(); i<=fromCell.getX(); i++) {
+                    cells.add(gridList[fromCell.getY()][i]);
+                } 
             }
         } else {
             throw new IllegalArgumentException("Cannot get diagonal Cells. Please enter row or column.");
